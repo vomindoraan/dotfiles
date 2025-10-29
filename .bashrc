@@ -80,7 +80,7 @@ fi
 # Support for direnv virtual env status in prompt
 direnv_ps1() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-    echo "($(basename $VIRTUAL_ENV)) "
+    echo "($(basename "$VIRTUAL_ENV")) "
   fi
 }
 export -f direnv_ps1

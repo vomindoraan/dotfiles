@@ -1,5 +1,6 @@
 # Usually appended to local .bashrc
 
+# Source dotfiles
 export DOT_DIR="/mnt/c/Users/konst/OneDrive/Documents/Config"
 export DOT_BASHRC="$DOT_DIR/.bashrc"
 export DOT_ALIASES="$DOT_DIR/.bash_aliases"
@@ -12,8 +13,19 @@ if find "$DOT_ALIASES" "$DOT_COMPLETION_PY" -newer "$DOT_COMPLETION" | read; the
 fi
 . "$DOT_COMPLETION"
 
-export PS1_HOSTCOLOR='32'  # 3-normal, 9-bright | 1-red, 2-green, 3-yellow, 4-blue, 5-magenta, 6-cyan
+# 3-normal, 9-bright | 1-red, 2-green, 3-yellow, 4-blue, 5-magenta, 6-cyan
+export PS1_HOSTCOLOR='32'
 
-eval "$(direnv hook bash)"
+# Direnv
+# eval "$(direnv hook bash)"
 
+# VcXsrv interface
+# export DISPLAY="$(ip route list default | grep -Eo '([0-9]+\.?){4}'):0"
+# export LIBGL_ALWAYS_INDIRECT=1
+
+# QMK
+# source ~/qmk_utils/activate_wsl.sh
+# export QMK_HOME=~/Projects/qmk_firmware
+
+# If not in .bashrc, source it now
 # [[ -f ~/.bashrc ]] && . ~/.bashrc

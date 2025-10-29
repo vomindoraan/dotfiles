@@ -10,3 +10,5 @@ cnoremap clip w !clip.exe
 cnoremap w!! execute 'w !sudo tee % >/dev/null' <bar> edit!
 
 colorscheme delek
+hi Search ctermfg=NONE ctermbg=DarkGray
+hi MatchParen cterm=underline ctermbg=8
