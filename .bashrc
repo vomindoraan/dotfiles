@@ -34,32 +34,32 @@ export GIT_PS1_STATESEPARATOR=
 
 # https://seasonofcode.com/posts/debug-trap-and-prompt_command-in-bash.html
 pre_command() {
-   if [ -n "$AT_PROMPT" ]; then
+   if [[ -n "$AT_PROMPT" ]]; then
        unset AT_PROMPT
        eval "$PRE_CALLBACKS"
    fi
 }
-trap "pre_command" DEBUG
+trap 'pre_command' DEBUG
 
 FIRST_PROMPT=1
 post_command() {
    AT_PROMPT=1
-   if [ -n "$FIRST_PROMPT" ]; then
+   if [[ -n "$FIRST_PROMPT" ]]; then
        unset FIRST_PROMPT
    else
        eval "$POST_CALLBACKS"
    fi
 }
-PROMPT_COMMAND="post_command"
+PROMPT_COMMAND='post_command'
 
 # Add a callback to be evaluated before each command
 add_pre() {
-   PRE_CALLBACKS+=$1";"
+   PRE_CALLBACKS+="$1;"
 }
 
 # Add a callback to be evaluated after each command
 add_post() {
-   POST_CALLBACKS+=$1";"
+   POST_CALLBACKS+="$1;"
 }
 
 # Set title at start because of long, blocking commands like ssh
@@ -70,7 +70,7 @@ set_title() {
 add_pre set_title
 
 # If running in Windows Terminal, tell it what the PWD is
-if [ -n "$WT_SESSION" ]; then
+if [[ -n "$WT_SESSION" ]]; then
     wt_set_pwd() {
         printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
     }
@@ -171,7 +171,7 @@ rgfind() {
 # Concurrently build all files matching glob(s) using GCC (usage: gcc_all GLOB...)
 gcc_all() {
     for src in "$@"; do
-        local out=$(basename "$src")
+        local out="$(basename "$src")"
         (gcc "$src" -o "${out%.*}" &)
     done
 }
@@ -179,7 +179,7 @@ gcc_all() {
 # Concurrently build all files matching glob(s) using MSVC (usage: cl_all GLOB...)
 cl_all() {
     for src in "$@"; do
-        (cl "$src" -link 2>/dev/null | grep -E "warning|error" &)
+        (cl "$src" -link 2>/dev/null | grep -E 'warning|error' &)
     done
 }
 

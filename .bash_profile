@@ -16,4 +16,4 @@ export PS1_HOSTCOLOR='32'  # 3-normal, 9-bright | 1-red, 2-green, 3-yellow, 4-bl
 
 eval "$(direnv hook bash)"
 
-# [ -f ~/.bashrc ] && . ~/.bashrc
+# [[ -f ~/.bashrc ]] && . ~/.bashrc
