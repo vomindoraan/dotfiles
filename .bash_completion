@@ -205,6 +205,7 @@ __git_complete grbi _git_rebase
 __git_complete grbm _git_rebase
 __git_complete grbM _git_rebase
 __git_complete grbr _git_rebase
+__git_complete grbR _git_rebase
 __git_complete grbs _git_rebase
 __git_complete grbq _git_rebase
 __git_complete grl _git_reflog
