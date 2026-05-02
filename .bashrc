@@ -34,32 +34,32 @@ export GIT_PS1_STATESEPARATOR=
 
 # https://seasonofcode.com/posts/debug-trap-and-prompt_command-in-bash.html
 pre_command() {
-   if [[ -n "$AT_PROMPT" ]]; then
-       unset AT_PROMPT
-       eval "$PRE_CALLBACKS"
-   fi
+    if [[ -n "$AT_PROMPT" ]]; then
+        unset AT_PROMPT
+        eval "$PRE_CALLBACKS"
+    fi
 }
 trap 'pre_command' DEBUG
 
 FIRST_PROMPT=1
 post_command() {
-   AT_PROMPT=1
-   if [[ -n "$FIRST_PROMPT" ]]; then
-       unset FIRST_PROMPT
-   else
-       eval "$POST_CALLBACKS"
-   fi
+    AT_PROMPT=1
+    if [[ -n "$FIRST_PROMPT" ]]; then
+        unset FIRST_PROMPT
+    else
+        eval "$POST_CALLBACKS"
+    fi
 }
 PROMPT_COMMAND='post_command'
 
 # Add a callback to be evaluated before each command
 add_pre() {
-   PRE_CALLBACKS+="$1;"
+    PRE_CALLBACKS+="$1;"
 }
 
 # Add a callback to be evaluated after each command
 add_post() {
-   POST_CALLBACKS+="$1;"
+    POST_CALLBACKS+="$1;"
 }
 
 # Set title at start because of long, blocking commands like ssh
