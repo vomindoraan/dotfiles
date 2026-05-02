@@ -71,13 +71,16 @@ __git_complete gcpq _git_cherry_pick
 __git_complete gcpx _git_cherry_pick
 __git_complete gd _git_diff
 __git_complete gdb _git_diff
+__git_complete gdB _git_diff
 __git_complete gdc _git_diff
-__git_complete gdch _git_diff
+__git_complete gdcb _git_diff
+__git_complete gdcB _git_diff
 __git_complete gdcs _git_diff
 __git_complete gdcw _git_diff
 __git_complete gdC _git_diff
 __git_complete gdd _git_diff
 __git_complete gdD _git_diff
+__git_complete gdk _git_diff
 __git_complete gdm _git_diff
 __git_complete gdM _git_diff
 __git_complete gdn _git_diff
@@ -249,6 +252,7 @@ __git_complete gsmi _git_submodule
 __git_complete gsmp _git_submodule
 __git_complete gsmr _git_submodule
 __git_complete gsms _git_submodule
+__git_complete gsmS _git_submodule
 __git_complete gsmu _git_submodule
 __git_complete gst _git_stash
 __git_complete gst0 _git_stash
