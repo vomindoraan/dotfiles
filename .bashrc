@@ -28,7 +28,7 @@ export PAGER='less'
 export PS1_HOSTCOLOR='32'
 export PS1='\[\033]0;\W: $BASH_COMMAND\007\]
 \[\033[${PS1_HOSTCOLOR}m\]\u@\h \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]
-\[\033[31m\]`direnv_ps1`\[\033[1;37m\]$\[\033[0m\] '
+\[\033[31m\]`direnv_ps1``status_ps1`$\[\033[0m\] '
 # export GIT_PS1_SHOWDIRTYSTATE=1  # May cause slowdown in large repos
 export GIT_PS1_STATESEPARATOR=
 
@@ -43,6 +43,7 @@ trap 'pre_command' DEBUG
 
 FIRST_PROMPT=1
 post_command() {
+    CMD_STATUS=$?
     AT_PROMPT=1
     if [[ -n "$FIRST_PROMPT" ]]; then
         unset FIRST_PROMPT
@@ -77,7 +78,14 @@ if [[ -n "$WT_SESSION" ]]; then
     add_post wt_set_pwd
 fi
 
-# Support for direnv virtual env status in prompt
+# Set prompt color depending on exit status of last command
+# success: bright white, failure: gray
+status_ps1() {
+    [[ $CMD_STATUS == 0 ]] && echo -en "\033[1;37m" || echo -en "\033[1;30m"
+}
+export -f status_ps1
+
+# Show direnv virtual env status in prompt
 direnv_ps1() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
     echo "($(basename "$VIRTUAL_ENV")) "
