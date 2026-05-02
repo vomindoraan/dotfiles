@@ -129,6 +129,16 @@ mkcd() {
     mkdir "$@" && cd "$1"
 }
 
+# Copy files and make intermediate directories (usage: cpmk SOURCE... DIR)
+cpmk() {
+    mkdir -p "${@:$#}" && cp ${@:1:$#-1} "$_"
+}
+
+# Move files and make intermediate directories (usage: mvmk SOURCE... DIR)
+mvmk() {
+    mkdir -p "${@:$#}" && mv ${@:1:$#-1} "$_"
+}
+
 # Run command with colored stderr output (usage: color CMD)
 color() {
     (set -o pipefail; "$@" 2>&1>&3 | sed $'s/.*/\e[31m&\e[m/' >&2) 3>&1
