@@ -23,12 +23,12 @@ export PAGER='less'
 # Title:  <pwd>: <cmd>
 # Prompt: <user>@<host> <pwd>[ <git>]
 #         [<venv> ]$ 
-# Colors: user/host: PS1_HOSTCOLOR, pwd: yellow, git: cyan, venv: red
-#         3-normal, 9-bright | 1-red, 2-green, 3-yellow, 4-blue, 5-magenta, 6-cyan 
+# Colors: user/host: PS1_HOSTCOLOR, pwd: yellow, git: cyan, venv: lilac
+#         3-normal, 9-bright | 1-red, 2-green, 3-yellow, 4-blue, 5-magenta, 6-cyan
 export PS1_HOSTCOLOR='32'
-export PS1='\[\033]0;\W: $BASH_COMMAND\007\]
-\[\033[${PS1_HOSTCOLOR}m\]\u@\h \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\]
-\[\033[31m\]`direnv_ps1``status_ps1`$\[\033[0m\] '
+export PS1='\[\e]0;\W: $BASH_COMMAND\a\]
+\[\e[${PS1_HOSTCOLOR}m\]\u@\h \[\e[33m\]\w\[\e[36m\]`__git_ps1`
+\[\e[95m\]`direnv_ps1`\[`status_ps1`\]$\[\e[0m\] '
 # export GIT_PS1_SHOWDIRTYSTATE=1  # May cause slowdown in large repos
 export GIT_PS1_STATESEPARATOR=
 
@@ -66,14 +66,14 @@ add_post() {
 # Set title at start because of long, blocking commands like ssh
 set_title() {
     local pwd="$(dirs +0)"
-    echo -en "\033]0;${pwd##*/}: $BASH_COMMAND\007"
+    printf "\e]0;%s: %s\a" "${pwd##*/}" "$BASH_COMMAND"
 }
 add_pre set_title
 
 # If running in Windows Terminal, tell it what the PWD is
 if [[ -n "$WT_SESSION" ]]; then
     wt_set_pwd() {
-        printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
+        printf "\e]9;9;%s\a" "$(wslpath -w "$PWD")"
     }
     add_post wt_set_pwd
 fi
@@ -81,14 +81,14 @@ fi
 # Set prompt color depending on exit status of last command
 # success: bright white, failure: gray
 status_ps1() {
-    [[ $CMD_STATUS == 0 ]] && echo -en "\033[1;37m" || echo -en "\033[1;30m"
+    [[ $CMD_STATUS == 0 ]] && printf "\e[1;37m" || printf "\e[1;30m"
 }
 export -f status_ps1
 
 # Show direnv virtual env status in prompt
 direnv_ps1() {
   if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
-    echo "($(basename "$VIRTUAL_ENV")) "
+      printf "(%s) " "$(basename "$VIRTUAL_ENV")"
   fi
 }
 export -f direnv_ps1
