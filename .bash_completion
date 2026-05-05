@@ -85,6 +85,10 @@ __git_complete gdm _git_diff
 __git_complete gdM _git_diff
 __git_complete gdn _git_diff
 __git_complete gdN _git_diff
+__git_complete gdom _git_diff
+__git_complete gdoM _git_diff
+__git_complete gdod _git_diff
+__git_complete gdoD _git_diff
 __git_complete gdp _git_diff
 __git_complete gds _git_diff
 __git_complete gdsd _git_diff
@@ -124,6 +128,7 @@ __git_complete glos _git_log
 __git_complete glp _git_log
 __git_complete gls _git_log
 __git_complete glsf _git_ls_files
+__git_complete glsF _git_ls_files
 __git_complete gm _git_merge
 __git_complete gma _git_merge
 __git_complete gmc _git_merge
