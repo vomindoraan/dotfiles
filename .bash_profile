@@ -23,9 +23,14 @@ export PS1_HOSTCOLOR='32'
 # export DISPLAY="$(ip route list default | grep -Eo '([0-9]+\.?){4}'):0"
 # export LIBGL_ALWAYS_INDIRECT=1
 
-# QMK
-# source ~/qmk_utils/activate_wsl.sh
-# export QMK_HOME=~/Projects/qmk_firmware
+# Qt6
+# export PATH="/usr/lib/qt6/bin:$PATH"
+# export QT_QPA_PLATFORM=xcb
+
+# NVM
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+# [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 
 # If not in .bashrc, source it now
 # [[ -f ~/.bashrc ]] && . ~/.bashrc
