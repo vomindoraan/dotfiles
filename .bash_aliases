@@ -14,6 +14,7 @@ alias lr='ls -RF'
 alias reload='[ -f ~/.bash_profile ] && . ~/.bash_profile || . ~/.profile'
 
 # Binaries
+alias ff='fastfetch'
 alias py='python'
 alias ipy='python -m IPython'
 alias serve='python -m http.server'
